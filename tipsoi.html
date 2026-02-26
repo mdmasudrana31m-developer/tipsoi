@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <section
+      style="
+        background-image: url(&quot;assets/bg.png&quot;);
+        background-size: cover;
+        background-position: center;
+      "
+      class="min-h-screen overflow-hidden relative flex items-center justify-center"
+    >
+      <nav
+        class="h-[70px] absolute top-0 w-full px-6 md:px-16 lg:px-24 xl:px-32 flex items-center justify-between z-20 text-gray-700"
+      >
+        <a href="/" class="text-indigo-600">
+          <img src="assets/logo.png" alt="Tipsoi Logo" class="w-32" />
+        </a>
+
+        <ul class="md:flex hidden items-center gap-10">
+          <li>
+            <a class="hover:text-gray-500/80 transition" href="/products"
+              >Products</a
+            >
+          </li>
+          <li>
+            <a class="hover:text-gray-500/80 transition" href="#"
+              >Software solution</a
+            >
+          </li>
+          <li>
+            <a class="hover:text-gray-500/80 transition" href="#"
+              >industrial solution</a
+            >
+          </li>
+          <li>
+            <a class="hover:text-gray-500/80 transition" href="#">About</a>
+          </li>
+          <li>
+            <a class="hover:text-gray-500/80 transition" href="#">Blog</a>
+          </li>
+        </ul>
+
+        <button
+          type="button"
+          class="bg-[#333A7B] text-white border border-gray-300 md:inline hidden text-sm active:scale-95 transition-all w-[125px] h-[37px] rounded-full"
+        >
+          Get started
+        </button>
+
+        <button
+          aria-label="menu-btn"
+          type="button"
+          class="menu-btn inline-block md:hidden active:scale-90 transition"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            viewBox="0 0 30 30"
+            fill="#000"
+          >
+            <path
+              d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z"
+            ></path>
+          </svg>
+        </button>
+
+        <div
+          class="mobile-menu absolute top-[70px] left-0 w-full bg-white p-6 hidden md:hidden"
+        >
+          <ul class="flex flex-col space-y-4 text-lg">
+            <li><a href="#" class="text-sm">Home</a></li>
+            <li><a href="#" class="text-sm">Services</a></li>
+            <li><a href="#" class="text-sm">Portfolio</a></li>
+            <li><a href="#" class="text-sm">Pricing</a></li>
+          </ul>
+
+          <button
+            type="button"
+            class="bg-black text-white border border-gray-300 mt-6 text-sm w-40 h-11 rounded-full"
+          >
+            Get starte
+          </button>
+        </div>
+      </nav>
+
+      <script>
+        const menuButtons = document.querySelectorAll(".menu-btn");
+        const mobileMenus = document.querySelectorAll(".mobile-menu");
+
+        menuButtons.forEach((btn, index) => {
+          btn.addEventListener("click", () => {
+            mobileMenus[index].classList.toggle("hidden");
+          });
+        });
+      </script>
+
+      <div
+        class="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 xl:px-32 flex flex-col items-center justify-center top-[150px] absolute"
+      >
+        <h1
+          class="text-4xl md:text-6xl text-center font-bold w-full mt-5 text-black"
+        >
+          Advanced
+          <span class="text-[#48817B]">Biometric Attendance System</span> for
+          Your Workplace
+        </h1>
+        <p class="mt-6 md:text-lg text-center max-w-3xl">
+          Power your office with biometric intelligence and smart automation.
+        </p>
+        <p class="md:text-base max-md:px-2 text-center max-w-2xl mt-3">
+          All-in-One Workforce & HR Automation Platform
+        </p>
+
+        <div class="grid grid-cols-2 gap-6 mt-8 text-sm">
+          <button
+            class="px-8 py-3 bg-[#333A7B] text-[16px] text-white rounded-full"
+          >
+            See our Products
+          </button>
+          <button
+            class="px-8 py-3 bg-[#1C2A36] text-white text-[16px] rounded-full"
+          >
+            TAlk to an expert
+          </button>
+        </div>
+
+        <div
+          class="mt-12 flex flex-col items-center gap-6 max-w-6xl w-full mx-auto px-4"
+        >
+          <div
+            class="flex flex-col md:flex-row justify-center items-center gap-6 w-full"
+          >
+            <!-- Left Image -->
+            <img
+              src="assets/mobile11.png"
+              alt="Mobile 1"
+              class="w-40 sm:w-48 md:w-56 lg:w-64 h-auto object-contain"
+            />
+
+            <!-- Center Image (Bigger) -->
+            <img
+              src="assets/mobile22.png"
+              alt="Mobile 2"
+              class="w-56 sm:w-72 md:w-80 lg:w-[400px] h-auto object-contain"
+            />
+
+            <!-- Right Image -->
+            <img
+              src="assets/mobile33.png"
+              alt="Mobile 3"
+              class="w-40 sm:w-48 md:w-56 lg:w-64 h-auto object-contain"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="w-full py-12 flex flex-col items-center justify-center px-4"
+    >
+      <!-- Title -->
+      <p class="text-center text-lg sm:text-xl font-semibold mb-8">
+        Connected with top industry brands
+      </p>
+
+      <!-- Logos -->
+      <div
+        class="flex flex-col md:flex-row items-center justify-center gap-8 w-full max-w-5xl"
+      >
+        <img
+          src="assets/exim.png"
+          alt="Exim"
+          class="h-10 sm:h-12 md:h-14 w-auto object-contain"
+        />
+
+        <img
+          src="assets/kranti.png"
+          alt="Kranti"
+          class="h-10 sm:h-12 md:h-14 w-auto object-contain"
+        />
+
+        <img
+          src="assets/grif.png"
+          alt="Grif"
+          class="h-10 sm:h-12 md:h-14 w-auto object-contain"
+        />
+
+        <img
+          src="assets/ubc.png"
+          alt="UBC"
+          class="h-10 sm:h-12 md:h-14 w-auto object-contain"
+        />
+      </div>
+    </section>
+
+    <section
+      class="min-h-[650px] bg-cover bg-center flex items-center"
+      style="background-image: url(&quot;assets/bg.png&quot;)"
+    >
+      <div class="max-w-7xl mx-auto w-full px-6 md:px-16 lg:px-24 xl:px-32">
+        <!-- FLEX CONTAINER -->
+        <div
+          class="flex flex-col lg:flex-row items-stretch justify-between gap-12"
+        >
+          <!-- LEFT CONTENT -->
+          <div class="flex-1 flex flex-col justify-center lg:text-left">
+            <h1 class="text-4xl md:text-6xl font-bold text-black leading-tight">
+              Track attendance faster and smarter
+            </h1>
+
+            <p class="mt-4 md:text-lg max-w-xl mx-auto lg:mx-0">
+              Transform Your Business with Advanced Biometric Attendance System
+              & Digital Attendance Solutions.
+            </p>
+
+            <ul class="mt-6 space-y-3 text-base">
+              <li>✔ Avoid payroll errors eating up 8% of your budget</li>
+              <li>✔ Cut $5,000+ in admin costs yearly</li>
+              <li>✔ 20% productivity boost</li>
+            </ul>
+
+            <button
+              class="mt-8 px-8 py-3 bg-[#333A7B] text-white text-lg rounded-full hover:scale-105 transition duration-300"
+            >
+              See our Products
+            </button>
+          </div>
+
+          <!-- RIGHT IMAGE -->
+          <div
+            class="flex-1 top-10 relative overflow-hidden flex items-start justify-center"
+          >
+            <img
+              src="assets/cartmobile.png"
+              alt="Mobile Preview"
+              class="w-full h-[490px] object-cover object-top"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="min-h-[650px] bg-cover bg-center flex items-center">
+      <div class="max-w-7xl mx-auto w-full px-6 md:px-16 lg:px-24 xl:px-32">
+        <!-- FLEX CONTAINER -->
+        <div class="flex flex-col lg:flex-row justify-between gap-12">
+          <!-- LEFT CONTENT -->
+          <div class="flex-1 flex w-full flex-col justify-center lg:text-left">
+            <p class="text-[#48817B] font-bold text-[12px]">
+              Connected with top industry brands
+            </p>
+            <h1 class="text-4xl md:text-6xl font-bold text-black leading-tight">
+              Step into the Future of Attendance Management
+            </h1>
+
+            <img
+              src="assets/finger1.png"
+              alt="Finger Image"
+              class="w-[600px] h-[100px] max-w-xs mx-auto lg:mx-0"
+            />
+          </div>
+          <div class="w-1 h-45 bg-black"></div>
+          <!-- RIGHT IMAGE -->
+          <div class="flex-1 flex items-center justify-center">
+            <p>
+              Tipsoi is an all-in-one solution for effortless workforce
+              management. Our biometric attendance system combines advanced
+              attendance devices with cloud-based digital attendance system
+              software, Tipsoi tackles your workforce challenges head-on. This
+              combination ensures precise biometric attendance tracking,
+              optimizes scheduling with our comprehensive attendance machine
+              technology, and enhances security through fingerprint and facial
+              recognition technology, all while streamlining HR processes for
+              increased productivity.Now, you can take full control of your
+              workforce with Tipsoi.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="max-w-7xl mx-auto w-full px-6 md:px-16 lg:px-24 xl:px-32 py-16"
+    >
+      <div
+        class="flex flex-col lg:flex-row items-center justify-between gap-12"
+      >
+        <!-- 1️⃣ IMAGE DIV -->
+        <div class="flex-1 overflow-hidden">
+          <img
+            src="assets/mobile22.png"
+            alt="Mobile Preview"
+            class="w-full h-[500px] object-cover object-top"
+          />
+        </div>
+
+        <!-- 2️⃣ MIDDLE TIMELINE -->
+        <div class="hidden lg:flex flex-col items-center">
+          <div
+            class="w-1 bg-black h-[500px] flex flex-col justify-between items-center py-4"
+          >
+            <div class="w-10 h-10 bg-[#48817B] rounded-full"></div>
+            <div class="w-10 h-10 bg-[#48817B] rounded-full"></div>
+            <div class="w-10 h-10 bg-[#48817B] rounded-full"></div>
+            <div class="w-10 h-10 bg-[#48817B] rounded-full"></div>
+            <div class="w-10 h-10 bg-[#48817B] rounded-full"></div>
+            <div class="w-10 h-10 bg-[#48817B] rounded-full"></div>
+          </div>
+        </div>
+
+        <!-- 3️⃣ TEXT DIV -->
+        <div class="flex-1 flex flex-col gap-8">
+          <div>
+            <h1 class="text-2xl font-bold">AI-Powered Face Recognition</h1>
+            <p>Get enhanced accuracy and improves access control security.</p>
+          </div>
+
+          <div>
+            <h1 class="text-2xl font-bold">Centralized Attendance</h1>
+            <p>
+              Get real-time attendance tracking & improved operational
+              efficiency.
+            </p>
+          </div>
+
+          <div>
+            <h1 class="text-2xl font-bold">Smart Scheduling & Rostering</h1>
+            <p>Get optimized shifts that automates easy rostering.</p>
+          </div>
+
+          <div>
+            <h1 class="text-2xl font-bold">Employee Life Cycle & Database</h1>
+            <p>Get improved tracking of employees life cycle.</p>
+          </div>
+
+          <div>
+            <h1 class="text-2xl font-bold">Leave Approvals & Policies</h1>
+            <p>
+              Get automated compliance, faster leave approvals, and policy
+              enforcement.
+            </p>
+          </div>
+
+          <div>
+            <h1 class="text-2xl font-bold">Real-Time Field Visit Tracking</h1>
+            <p>Manage attendance from anywhere anytime.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="min-h-[650px] bg-cover bg-center flex items-center"
+      style="background-image: url(&quot;assets/bg.png&quot;)"
+    >
+      <div class="max-w-7xl mx-auto w-full px-6 md:px-16 lg:px-24 xl:px-32">
+        <!-- FLEX CONTAINER -->
+        <h1
+          class="text-4xl md:text-6xl text-center font-bold w-full mt-5 text-black"
+        >
+          Dominate Your Industry
+          <span class="text-[#48817B]"
+            >with Tipsoi Biometric Attendance Device</span
+          >
+        </h1>
+
+        <div
+          class="flex flex-col items-center gap-6 max-w-6xl w-full mx-auto px-4 mt-10"
+        >
+          <!-- IMAGE SECTION -->
+          <div
+            class="flex items-center gap-2 h-[400px] w-full max-w-4xl mt-10 mx-auto"
+          >
+            <div
+              class="image-item relative flex-grow w-56 rounded-lg overflow-hidden h-[400px] duration-500 hover:w-full"
+            >
+              <img
+                class="h-full w-full object-cover object-right"
+                src="assets/slit1.png"
+              />
+            </div>
+
+            <div
+              class="image-item relative flex-grow w-56 rounded-lg overflow-hidden h-[400px] duration-500 hover:w-full"
+            >
+              <img
+                class="h-full w-full object-cover object-right"
+                src="assets/slit2.png"
+              />
+            </div>
+
+            <div
+              class="image-item relative flex-grow w-56 rounded-lg overflow-hidden h-[400px] duration-500 hover:w-full"
+            >
+              <img
+                class="h-full w-full object-cover object-right"
+                src="assets/slit3.png"
+              />
+            </div>
+
+            <div
+              class="image-item relative flex-grow w-56 rounded-lg overflow-hidden h-[400px] duration-500 hover:w-full"
+            >
+              <img
+                class="h-full w-full object-cover object-right"
+                src="assets/slit4.png"
+              />
+            </div>
+          </div>
+
+          <!-- DOTS -->
+          <div class="flex justify-center items-center space-x-2">
+            <span class="dot w-3 h-3 bg-black/20 rounded-full"></span>
+            <span class="dot w-3 h-3 bg-black/20 rounded-full"></span>
+            <span class="dot w-3 h-3 bg-black/20 rounded-full"></span>
+            <span class="dot w-3 h-3 bg-black/20 rounded-full"></span>
+          </div>
+
+          <button
+            class="bg-[#333A7B] mb-6 text-white px-[80px] py-3 rounded-full font-bold"
+          >
+            Explore Tipsoi Devices
+          </button>
+        </div>
+
+        <script>
+          const images = document.querySelectorAll(".image-item");
+          const dots = document.querySelectorAll(".dot");
+
+          images.forEach((img, index) => {
+            img.addEventListener("mouseenter", () => {
+              dots.forEach((dot) => dot.classList.remove("bg-[#E11E38]"));
+              dots.forEach((dot) => dot.classList.add("bg-black/20"));
+
+              dots[index].classList.remove("bg-black/20");
+              dots[index].classList.add("bg-[#E11E38]");
+            });
+          });
+        </script>
+      </div>
+    </section>
+
+    <section
+      class="max-w-9xl mx-auto w-full px-6 md:px-16 lg:px-24 xl:px-32 py-16"
+    >
+      <div class="flex flex-col lg:flex-row gap-2 items-center">
+        <!-- RIGHT SIDE -->
+        <div class="flex-1 space-y-6 text-center lg:text-left">
+          <p class="text-sm text-gray-500">
+            Connected with top industry brands
+          </p>
+
+          <h1 class="text-3xl md:text-4xl font-bold">Stay Notified, Always</h1>
+
+          <p class="text-gray-600 max-w-xl">
+            Get instant alerts for clock-ins, shift changes, and unauthorized
+            access attempts to improve security and streamline operations.
+          </p>
+        </div>
+
+        <!-- LEFT SIDE (Slider Box) -->
+        <div
+          class="flex-1 border-2 w-full border-gray-300 rounded-2xl p-4 overflow-hidden"
+        >
+          <!-- SLIDER WRAPPER -->
+          <div class="relative w-full overflow-hidden">
+            <div
+              id="slider"
+              class="flex gap-[12px] transition-transform duration-500 ease-in-out"
+            >
+              <!-- CARD 1 -->
+              <div class="w-[300px] flex-shrink-0 px-4 rounded-xl">
+                <div
+                  class="indicator mb-4 w-14 h-14 rounded-full bg-gray-300 cursor-pointer"
+                ></div>
+                <h1 class="text-xl font-bold">Get Real-Time Updates</h1>
+                <p class="text-gray-600">
+                  Access live dashboards and attendance feeds instantly.
+                </p>
+              </div>
+
+              <!-- CARD 2 -->
+              <div class="w-[300px] flex-shrink-0 px-4 rounded-xl">
+                <div
+                  class="indicator mb-4 w-14 h-14 rounded-full bg-green-500 cursor-pointer"
+                ></div>
+                <h1 class="text-xl font-bold">Instant Alerts</h1>
+                <p class="text-gray-600">
+                  Receive alerts for shift changes & unauthorized access.
+                </p>
+              </div>
+
+              <!-- CARD 3 -->
+
+              <div class="w-[300px] flex-shrink-0 px-4 rounded-xl">
+                <div
+                  class="indicator mb-4 w-14 h-14 rounded-full bg-green-500 cursor-pointer"
+                ></div>
+
+                <h1 class="text-xl font-bold">Smart Reports</h1>
+                <p class="text-gray-600">
+                  Generate smart reports with real-time analytics.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const indicators = document.querySelectorAll(".indicator");
+
+      indicators.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          // Slide
+
+          // Active dot
+          indicators.forEach((d) => {
+            d.classList.remove("bg-green-500");
+            d.classList.add("bg-gray-300");
+          });
+
+          dot.classList.remove("bg-gray-300");
+          dot.classList.add("bg-green-500");
+        });
+      });
+    </script>
+  </body>
+</html>
