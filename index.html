@@ -12,6 +12,87 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <title>Document</title>
+
+    <script>
+      let faqCurrentSlide = 0;
+      let faqSlider;
+      let faqTotalSlides;
+
+      document.addEventListener("DOMContentLoaded", () => {
+        faqSlider = document.getElementById("slider1");
+        faqTotalSlides = faqSlider.children.length;
+        updateButtonStyles();
+      });
+
+      function closeAllAnswers() {
+        document.querySelectorAll(".faq-answer").forEach((el) => {
+          el.style.maxHeight = "0";
+          el.previousElementSibling
+            .querySelector("i")
+            .classList.remove("rotate-180");
+        });
+      }
+
+      function toggleAnswer(element) {
+        const answer = element.nextElementSibling;
+        const icon = element.querySelector("i");
+
+        const isOpen =
+          answer.style.maxHeight && answer.style.maxHeight !== "0px";
+
+        closeAllAnswers();
+
+        if (!isOpen) {
+          answer.style.maxHeight = answer.scrollHeight + "px";
+          icon.classList.add("rotate-180");
+        }
+      }
+
+      function nextSlide() {
+        if (faqCurrentSlide < faqTotalSlides - 1) {
+          faqCurrentSlide++;
+          animateSlide("up");
+        }
+      }
+
+      function prevSlide() {
+        if (faqCurrentSlide > 0) {
+          faqCurrentSlide--;
+          animateSlide("down");
+        }
+      }
+
+      function animateSlide(direction) {
+        closeAllAnswers();
+
+        if (direction === "up") {
+          // next → bottom থেকে top
+          faqSlider.style.transform = `translateY(-${faqCurrentSlide * 100}%)`;
+        } else {
+          // prev → top থেকে bottom
+          faqSlider.style.transform = `translateY(-${faqCurrentSlide * 100}%)`;
+        }
+
+        updateButtonStyles();
+      }
+
+      function updateButtonStyles() {
+        const prevBtn = document.querySelector(".faq-prev");
+        const nextBtn = document.querySelector(".faq-next");
+
+        prevBtn.classList.toggle("bg-[#48817B]", faqCurrentSlide > 0);
+        prevBtn.classList.toggle("bg-[#D9D9D9]", faqCurrentSlide === 0);
+
+        nextBtn.classList.toggle(
+          "bg-[#48817B]",
+          faqCurrentSlide < faqTotalSlides - 1,
+        );
+        nextBtn.classList.toggle(
+          "bg-[#D9D9D9]",
+          faqCurrentSlide === faqTotalSlides - 1,
+        );
+      }
+    </script>
   </head>
   <body class="overflow-x-hidden">
     <section
@@ -241,7 +322,7 @@
       </script>
 
       <div
-        class="max-w-7xl mx-auto px-6 md:px-16 lg:px-10 xl:px-32 flex flex-col items-center justify-center pt-[0px] md:pt-[150px]"
+        class="max-w-7xl mx-auto px-6 md:px-16 lg:px-10 xl:px-32 flex flex-col items-center justify-center pt-[100px] sm:pt-[120px] md:pt-[150px]"
       >
         <h1
           data-aos="fade-up"
@@ -1149,14 +1230,14 @@
           <div class="flex gap-4">
             <button
               onclick="prevSlide()"
-              class="w-12 h-12 bg-[#D9D9D9] text-white rounded-md"
+              class="faq-prev w-12 h-12 text-white rounded-md"
             >
               <i class="fa-solid fa-angle-left"></i>
             </button>
 
             <button
               onclick="nextSlide()"
-              class="w-12 h-12 bg-[#48817B] text-white rounded-md"
+              class="faq-next w-12 h-12  text-white rounded-md"
             >
               <i class="fa-solid fa-angle-right"></i>
             </button>
@@ -1164,22 +1245,25 @@
         </div>
 
         <!-- RIGHT SIDE -->
-        <div class="relative overflow-hidden">
-          <!-- SLIDER WRAPPER -->
-          <div id="slider1" class="flex transition-transform duration-500">
-            <!-- SLIDE 1 -->
-            <div class="min-w-full space-y-4">
-              <!-- FAQ -->
+        <div class="relative lg:mt-8 overflow-hidden h-[400px]">
+          <div
+            id="slider1"
+            class="flex flex-col transition-transform duration-500 ease-in-out h-full"
+          >
+            <!-- SLIDE -->
+            <div class="min-h-full space-y-4">
               <div class="border-b-2 border-black pb-4">
                 <div
                   onclick="toggleAnswer(this)"
-                  class="flex justify-between cursor-pointer"
+                  class="flex justify-between cursor-pointer items-center"
                 >
                   <h4 class="font-bold lg:text-2xl">What is Tipsoi?</h4>
-                  <i class="fa-solid fa-angle-down"></i>
+                  <i
+                    class="fa-solid fa-angle-down transition-transform duration-300"
+                  ></i>
                 </div>
                 <p
-                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300"
                 >
                   Tipsoi is an innovative technology company founded by Inovace
                   Technologies Ltd., specializing in advanced biometric devices
@@ -1193,112 +1277,309 @@
               <div class="border-b-2 border-black pb-4">
                 <div
                   onclick="toggleAnswer(this)"
-                  class="flex justify-between cursor-pointer"
+                  class="flex justify-between cursor-pointer items-center"
                 >
                   <h4 class="font-bold lg:text-2xl">What Tipsoi Does?</h4>
-                  <i class="fa-solid fa-angle-down"></i>
+                  <i
+                    class="fa-solid fa-angle-down transition-transform duration-300"
+                  ></i>
                 </div>
                 <p
-                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300"
                 >
-                  It offers attendance tracking and access control.
+                  Tipsoi is an innovative technology company founded by Inovace
+                  Technologies Ltd., specializing in advanced biometric devices
+                  and comprehensive HR
                 </p>
               </div>
 
               <div class="border-b-2 border-black pb-4">
                 <div
                   onclick="toggleAnswer(this)"
-                  class="flex justify-between cursor-pointer"
+                  class="flex justify-between cursor-pointer items-center"
                 >
                   <h4 class="font-bold lg:text-2xl">
                     What industries does Tipsoi primarily serve?
                   </h4>
-                  <i class="fa-solid fa-angle-down"></i>
+                  <i
+                    class="fa-solid fa-angle-down transition-transform duration-300"
+                  ></i>
                 </div>
                 <p
-                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300"
                 >
-                  Corporate, factories, hospitals, and more.
+                  Tipsoi is an innovative technology company founded by Inovace
+                  Technologies Ltd., specializing in advanced biometric devices
+                  and comprehensive HR
                 </p>
               </div>
 
               <div class="border-b-2 border-black pb-4">
                 <div
                   onclick="toggleAnswer(this)"
-                  class="flex justify-between cursor-pointer"
+                  class="flex justify-between cursor-pointer items-center"
                 >
                   <h4 class="font-bold lg:text-2xl">
                     What connectivity options are available?
                   </h4>
-                  <i class="fa-solid fa-angle-down"></i>
+                  <i
+                    class="fa-solid fa-angle-down transition-transform duration-300"
+                  ></i>
                 </div>
                 <p
-                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300"
                 >
-                  WiFi, LAN, Cloud sync supported.
+                  Tipsoi is an innovative technology company founded by Inovace
+                  Technologies Ltd., specializing in advanced biometric devices
+                  and comprehensive HR
                 </p>
               </div>
             </div>
 
             <!-- SLIDE 2 -->
-            <div class="min-w-full space-y-4">
-              <div class="border-b pb-4">
+            <div class="min-h-full space-y-4">
+              <div class="border-b-2 border-black pb-4">
                 <div
                   onclick="toggleAnswer(this)"
-                  class="flex justify-between cursor-pointer"
+                  class="flex justify-between cursor-pointer items-center"
                 >
-                  <h4 class="font-semibold">Pricing model?</h4>
-                  <i class="fa-solid fa-angle-down"></i>
+                  <h4 class="font-bold lg:text-2xl">Pricing model?</h4>
+                  <i
+                    class="fa-solid fa-angle-down transition-transform duration-300"
+                  ></i>
                 </div>
                 <p
-                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300"
                 >
                   Flexible subscription plans available.
                 </p>
               </div>
 
-              <div class="border-b pb-4">
+              <div class="border-b-2 border-black pb-4">
                 <div
                   onclick="toggleAnswer(this)"
-                  class="flex justify-between cursor-pointer"
+                  class="flex justify-between cursor-pointer items-center"
                 >
-                  <h4 class="font-semibold">Is data secure?</h4>
-                  <i class="fa-solid fa-angle-down"></i>
+                  <h4 class="font-bold lg:text-2xl">What Tipsoi Does?</h4>
+                  <i
+                    class="fa-solid fa-angle-down transition-transform duration-300"
+                  ></i>
                 </div>
                 <p
-                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300"
                 >
-                  Yes, enterprise-grade encryption used.
+                  Tipsoi is an innovative technology company founded by Inovace
+                  Technologies Ltd., specializing in advanced biometric devices
+                  and comprehensive HR
                 </p>
               </div>
 
-              <div class="border-b pb-4">
+              <div class="border-b-2 border-black pb-4">
                 <div
                   onclick="toggleAnswer(this)"
-                  class="flex justify-between cursor-pointer"
+                  class="flex justify-between cursor-pointer items-center"
                 >
-                  <h4 class="font-semibold">Support availability?</h4>
-                  <i class="fa-solid fa-angle-down"></i>
+                  <h4 class="font-bold lg:text-2xl">
+                    What industries does Tipsoi primarily serve?
+                  </h4>
+                  <i
+                    class="fa-solid fa-angle-down transition-transform duration-300"
+                  ></i>
                 </div>
                 <p
-                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300"
                 >
-                  24/7 customer support provided.
+                  Tipsoi is an innovative technology company founded by Inovace
+                  Technologies Ltd., specializing in advanced biometric devices
+                  and comprehensive HR
                 </p>
               </div>
 
-              <div class="border-b pb-4">
+              <div class="border-b-2 border-black pb-4">
                 <div
                   onclick="toggleAnswer(this)"
-                  class="flex justify-between cursor-pointer"
+                  class="flex justify-between cursor-pointer items-center"
                 >
-                  <h4 class="font-semibold">Free trial?</h4>
-                  <i class="fa-solid fa-angle-down"></i>
+                  <h4 class="font-bold lg:text-2xl">
+                    What connectivity options are available?
+                  </h4>
+                  <i
+                    class="fa-solid fa-angle-down transition-transform duration-300"
+                  ></i>
                 </div>
                 <p
-                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300"
                 >
-                  Yes, demo and free trial available.
+                  Tipsoi is an innovative technology company founded by Inovace
+                  Technologies Ltd., specializing in advanced biometric devices
+                  and comprehensive HR
+                </p>
+              </div>
+            </div>
+
+            <!-- SLIDE -->
+            <div class="min-h-full space-y-4">
+              <div class="border-b-2 border-black pb-4">
+                <div
+                  onclick="toggleAnswer(this)"
+                  class="flex justify-between cursor-pointer items-center"
+                >
+                  <h4 class="font-bold lg:text-2xl">What is Tipsoi?</h4>
+                  <i
+                    class="fa-solid fa-angle-down transition-transform duration-300"
+                  ></i>
+                </div>
+                <p
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300"
+                >
+                  Tipsoi is an innovative technology company founded by Inovace
+                  Technologies Ltd., specializing in advanced biometric devices
+                  and comprehensive HR management solutions. Tipsoi offers
+                  cutting-edge facial recognition, fingerprint scanning, and
+                  RFID devices designed to transform workforce management and
+                  access control globally.
+                </p>
+              </div>
+
+              <div class="border-b-2 border-black pb-4">
+                <div
+                  onclick="toggleAnswer(this)"
+                  class="flex justify-between cursor-pointer items-center"
+                >
+                  <h4 class="font-bold lg:text-2xl">What Tipsoi Does?</h4>
+                  <i
+                    class="fa-solid fa-angle-down transition-transform duration-300"
+                  ></i>
+                </div>
+                <p
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300"
+                >
+                  Tipsoi is an innovative technology company founded by Inovace
+                  Technologies Ltd., specializing in advanced biometric devices
+                  and comprehensive HR
+                </p>
+              </div>
+
+              <div class="border-b-2 border-black pb-4">
+                <div
+                  onclick="toggleAnswer(this)"
+                  class="flex justify-between cursor-pointer items-center"
+                >
+                  <h4 class="font-bold lg:text-2xl">
+                    What industries does Tipsoi primarily serve?
+                  </h4>
+                  <i
+                    class="fa-solid fa-angle-down transition-transform duration-300"
+                  ></i>
+                </div>
+                <p
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300"
+                >
+                  Tipsoi is an innovative technology company founded by Inovace
+                  Technologies Ltd., specializing in advanced biometric devices
+                  and comprehensive HR
+                </p>
+              </div>
+
+              <div class="border-b-2 border-black pb-4">
+                <div
+                  onclick="toggleAnswer(this)"
+                  class="flex justify-between cursor-pointer items-center"
+                >
+                  <h4 class="font-bold lg:text-2xl">
+                    What connectivity options are available?
+                  </h4>
+                  <i
+                    class="fa-solid fa-angle-down transition-transform duration-300"
+                  ></i>
+                </div>
+                <p
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300"
+                >
+                  Tipsoi is an innovative technology company founded by Inovace
+                  Technologies Ltd., specializing in advanced biometric devices
+                  and comprehensive HR
+                </p>
+              </div>
+            </div>
+
+            <!-- SLIDE 2 -->
+            <div class="min-h-full space-y-4">
+              <div class="border-b-2 border-black pb-4">
+                <div
+                  onclick="toggleAnswer(this)"
+                  class="flex justify-between cursor-pointer items-center"
+                >
+                  <h4 class="font-bold lg:text-2xl">Pricing model?</h4>
+                  <i
+                    class="fa-solid fa-angle-down transition-transform duration-300"
+                  ></i>
+                </div>
+                <p
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300"
+                >
+                  Flexible subscription plans available.
+                </p>
+              </div>
+
+              <div class="border-b-2 border-black pb-4">
+                <div
+                  onclick="toggleAnswer(this)"
+                  class="flex justify-between cursor-pointer items-center"
+                >
+                  <h4 class="font-bold lg:text-2xl">What Tipsoi Does?</h4>
+                  <i
+                    class="fa-solid fa-angle-down transition-transform duration-300"
+                  ></i>
+                </div>
+                <p
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300"
+                >
+                  Tipsoi is an innovative technology company founded by Inovace
+                  Technologies Ltd., specializing in advanced biometric devices
+                  and comprehensive HR
+                </p>
+              </div>
+
+              <div class="border-b-2 border-black pb-4">
+                <div
+                  onclick="toggleAnswer(this)"
+                  class="flex justify-between cursor-pointer items-center"
+                >
+                  <h4 class="font-bold lg:text-2xl">
+                    What industries does Tipsoi primarily serve?
+                  </h4>
+                  <i
+                    class="fa-solid fa-angle-down transition-transform duration-300"
+                  ></i>
+                </div>
+                <p
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300"
+                >
+                  Tipsoi is an innovative technology company founded by Inovace
+                  Technologies Ltd., specializing in advanced biometric devices
+                  and comprehensive HR
+                </p>
+              </div>
+
+              <div class="border-b-2 border-black pb-4">
+                <div
+                  onclick="toggleAnswer(this)"
+                  class="flex justify-between cursor-pointer items-center"
+                >
+                  <h4 class="font-bold lg:text-2xl">
+                    What connectivity options are available?
+                  </h4>
+                  <i
+                    class="fa-solid fa-angle-down transition-transform duration-300"
+                  ></i>
+                </div>
+                <p
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300"
+                >
+                  Tipsoi is an innovative technology company founded by Inovace
+                  Technologies Ltd., specializing in advanced biometric devices
+                  and comprehensive HR
                 </p>
               </div>
             </div>
@@ -1306,35 +1587,6 @@
         </div>
       </div>
     </section>
-
-    <script>
-      let currentSlide = 0;
-      const faqSlider = document.getElementById("slider1");
-      const totalSlides = faqSlider.children.length;
-
-      function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        faqSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
-      }
-
-      function prevSlide() {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        faqSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
-      }
-
-      function toggleAnswer(element) {
-        const answer = element.nextElementSibling;
-        const icon = element.querySelector("i");
-
-        if (answer.style.maxHeight && answer.style.maxHeight !== "0px") {
-          answer.style.maxHeight = "0";
-          icon.classList.remove("rotate-180");
-        } else {
-          answer.style.maxHeight = answer.scrollHeight + "px";
-          icon.classList.add("rotate-180");
-        }
-      }
-    </script>
 
     <footer class="bg-[#1C2A36] py-12 px-6 lg:px-8">
       <div class="w-full max-w-7xl mx-auto">
