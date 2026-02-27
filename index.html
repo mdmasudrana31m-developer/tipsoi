@@ -24,37 +24,55 @@
       class="min-h-screen relative flex items-center justify-center overflow-x-hidden"
     >
       <nav
-        class="h-[70px] fixed top-0 left-0 w-full px-6 md:px-16 lg:px-24 xl:px-32 flex items-center justify-between z-30 text-gray-700 backdrop-blur-md transition-all duration-300"
+        id="navbar"
+        class="h-[70px] fixed top-0 left-0 w-full px-6 md:px-16 lg:px-24 xl:px-32 flex items-center justify-between z-30 text-black transition-all duration-300"
       >
-        <a href="/" class="text-indigo-600">
-          <img src="assets/logo.png" alt="Tipsoi Logo" class="w-24 sm:w-32" />
+        <a
+          href="/"
+          class="relative h-10 w-32 overflow-hidden flex items-center"
+        >
+          <!-- FULL LOGO -->
+          <div
+            id="logo-full"
+            class="absolute inset-0 flex items-center transition-all duration-500 ease-in-out"
+          >
+            <img src="assets/logo.png" alt="Tipsoi Logo" class="w-28" />
+          </div>
+
+          <!-- ICON LOGO -->
+          <div
+            id="logo-icon"
+            class="absolute inset-0 ml-8 flex items-center justify-start translate-y-full transition-all duration-500 ease-in-out"
+          >
+            <img src="assets/logo1.png" alt="Tipsoi Icon" class="w-10" />
+          </div>
         </a>
 
         <ul class="md:flex hidden items-center gap-10">
           <li>
             <a
-              class="nav-link hover:text-gray-500/80 text-xl transition"
+              class="nav-link hover:text-black text-xl transition"
               href="#products"
               >Products</a
             >
           </li>
           <li>
             <a
-              class="nav-link hover:text-gray-500/80 text-xl transition"
+              class="nav-link hover:text-black text-xl transition"
               href="#software"
               >Software solution</a
             >
           </li>
           <li>
             <a
-              class="nav-link hover:text-gray-500/80 text-xl transition"
+              class="nav-link hover:text-black text-xl transition"
               href="#industrial"
               >industrial solution</a
             >
           </li>
           <li>
             <a
-              class="nav-link hover:text-gray-500/80 text-xl transition"
+              class="nav-link hover:text-black text-xl transition"
               href="#about"
               >About</a
             >
@@ -70,9 +88,21 @@
 
         <button
           type="button"
-          class="bg-[#333A7B] text-white border border-gray-300 md:inline hidden text-sm active:scale-95 transition-all w-[125px] h-[37px] rounded-full"
+          class="group relative overflow-hidden bg-[#333A7B] text-white border border-gray-300 md:inline hidden text-sm w-[125px] h-[37px] rounded-full"
         >
-          CONTACT US
+          <!-- Default Text -->
+          <span
+            class="absolute inset-0 flex items-center justify-center transition-all duration-300 group-hover:-translate-y-full group-hover:scale-75"
+          >
+            CONTACT US
+          </span>
+
+          <!-- Hover Text -->
+          <span
+            class="absolute inset-0 flex items-center justify-center translate-y-full scale-75 transition-all duration-300 group-hover:translate-y-0 group-hover:scale-100"
+          >
+            CONTACT US
+          </span>
         </button>
 
         <button
@@ -103,12 +133,50 @@
 
           <button
             type="button"
-            class="bg-black text-white border border-gray-300 mt-6 text-sm w-40 h-11 rounded-full mx-auto"
+            class="bg-[#333A7B] text-white border border-gray-300 mt-6 text-sm w-40 h-11 rounded-full mx-auto"
           >
             CONTACT US
           </button>
         </div>
       </nav>
+
+      <script>
+        const navbar = document.getElementById("navbar");
+        const logoFull = document.getElementById("logo-full");
+        const logoIcon = document.getElementById("logo-icon");
+
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50) {
+            navbar.classList.add(
+              "bg-white/80",
+              "backdrop-blur-xl",
+              "shadow-md",
+              "h-[60px]",
+            );
+            navbar.classList.remove("h-[70px]");
+
+            // FULL LOGO up
+            logoFull.classList.add("-translate-y-full");
+
+            // ICON LOGO up from bottom
+            logoIcon.classList.remove("translate-y-full");
+            logoIcon.classList.add("translate-y-0");
+          } else {
+            navbar.classList.remove(
+              "bg-white/80",
+              "backdrop-blur-xl",
+              "shadow-md",
+              "h-[60px]",
+            );
+            navbar.classList.add("h-[70px]");
+
+            // Reset
+            logoFull.classList.remove("-translate-y-full");
+            logoIcon.classList.remove("translate-y-0");
+            logoIcon.classList.add("translate-y-full");
+          }
+        });
+      </script>
 
       <script>
         const menuButtons = document.querySelectorAll(".menu-btn");
@@ -131,9 +199,9 @@
             e.preventDefault();
             const target = document.querySelector(link.getAttribute("href"));
             document.querySelectorAll(".nav-link").forEach((l) => {
-              l.classList.remove("border-b-2", "border-indigo-600");
+              l.classList.remove("border-b-2", "border-red-500");
             });
-            link.classList.add("border-b-2", "border-indigo-600");
+            link.classList.add("border-b-2", "border-red-500");
             if (target) target.scrollIntoView({ behavior: "smooth" });
           });
         });
@@ -151,9 +219,9 @@
           }
           navLinks.forEach((link) => {
             if (link.getAttribute("href") === `#${current.id}`) {
-              link.classList.add("border-b-2", "border-indigo-600");
+              link.classList.add("border-b-2", "border-red-500");
             } else {
-              link.classList.remove("border-b-2", "border-indigo-600");
+              link.classList.remove("border-b-2", "border-red-500");
             }
           });
         }
@@ -173,12 +241,12 @@
       </script>
 
       <div
-        class="max-w-7xl mx-auto px-6 md:px-16 lg:px-10 xl:px-32 flex flex-col items-center justify-center pt-[120px] md:pt-[150px]"
+        class="max-w-7xl mx-auto px-6 md:px-16 lg:px-10 xl:px-32 flex flex-col items-center justify-center pt-[0px] md:pt-[150px]"
       >
         <h1
           data-aos="fade-up"
           data-aos-duration="800"
-          class="text-4xl md:text-6xl text-center font-bold w-full mt-5 text-black"
+          class="text-4xl md:text-6xl text-center font-bold w-full lg:mt-5 mt-2 text-black"
         >
           Advanced
           <span class="text-[#48817B]"
@@ -214,17 +282,40 @@
           data-aos="fade-up"
           data-aos-delay="200"
           data-aos-duration="800"
-          class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 text-sm"
+          class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 w-full max-w-xl"
         >
+          <!-- BUTTON 1 -->
           <button
-            class="w-full px-8 py-3 bg-[#333A7B] text-[16px] text-white rounded-full"
+            class="group relative w-full h-12 sm:h-14 rounded-full overflow-hidden bg-[#333A7B] text-white font-medium text-sm sm:text-base transition-all duration-300 hover:shadow-lg hover:shadow-[#333A7B]/30"
           >
-            See our Products
+            <span
+              class="absolute inset-0 flex items-center justify-center transition-all duration-500 ease-in-out group-hover:-translate-y-full group-hover:scale-90"
+            >
+              See our Products
+            </span>
+
+            <span
+              class="absolute inset-0 flex items-center justify-center translate-y-full scale-90 transition-all duration-500 ease-in-out group-hover:translate-y-0 group-hover:scale-100"
+            >
+              See our Products
+            </span>
           </button>
+
+          <!-- BUTTON 2 -->
           <button
-            class="w-full px-8 py-3 bg-[#1C2A36] text-white text-[16px] rounded-full"
+            class="group relative w-full h-12 sm:h-14 rounded-full overflow-hidden bg-[#1C2A36] text-white font-medium text-sm sm:text-base transition-all duration-300 hover:shadow-lg hover:shadow-black/30"
           >
-            TAlk to an expert
+            <span
+              class="absolute inset-0 flex items-center justify-center transition-all duration-500 ease-in-out group-hover:-translate-y-full group-hover:scale-90"
+            >
+              Talk to an expert
+            </span>
+
+            <span
+              class="absolute inset-0 flex items-center justify-center translate-y-full scale-90 transition-all duration-500 ease-in-out group-hover:translate-y-0 group-hover:scale-100"
+            >
+              Talk to an expert
+            </span>
           </button>
         </div>
 
@@ -238,21 +329,9 @@
             class="flex flex-col lg:flex-row items-center lg:items-end justify-center gap-16"
           >
             <img
-              src="assets/mobile1.png"
-              alt="Mobile 1"
-              class="w-40 sm:w-48 md:w-52 lg:w-60 h-auto object-contain"
-            />
-
-            <img
-              src="assets/mobile2.png"
-              alt="Mobile 2"
-              class="w-56 sm:w-72 md:w-80 lg:w-[500px] h-auto object-contain"
-            />
-
-            <img
-              src="assets/mobile3.png"
-              alt="Mobile 3"
-              class="w-40 sm:w-48 md:w-52 lg:w-60 h-auto object-contain"
+              src="assets/Frame.svg"
+              alt="Frame Image"
+              class="w-full object-contain"
             />
           </div>
         </div>
@@ -365,12 +444,21 @@
             </ul>
 
             <button
-              data-aos="fade-right"
-              data-aos-delay="300"
-              data-aos-duration="800"
-              class="mt-8 px-8 py-2 bg-[#333A7B] text-white text-xl rounded-full w-fit mx-auto lg:mx-0 hover:bg-[#2b3169] transition"
+              class="group relative overflow-hidden mt-6 w-auto min-w-[220px] sm:max-w-[240px] h-12 sm:h-14 px-10 bg-[#333A7B] text-[15px] sm:text-[16px] text-white rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-[#333A7B]/30 mx-auto lg:mx-0 block"
             >
-              See our Products
+              <!-- Default Text -->
+              <span
+                class="absolute inset-0 flex items-center justify-center transition-all duration-500 ease-in-out group-hover:-translate-y-full group-hover:scale-90"
+              >
+                See our Products
+              </span>
+
+              <!-- Hover Text -->
+              <span
+                class="absolute inset-0 flex items-center justify-center translate-y-full scale-90 transition-all duration-500 ease-in-out group-hover:translate-y-0 group-hover:scale-100"
+              >
+                See our Products
+              </span>
             </button>
           </div>
 
@@ -380,7 +468,7 @@
             class="lg:w-2/5 flex items-center justify-center overflow-hidden"
           >
             <img
-              src="assets/cartmobile1.png"
+              src="assets/Cartmobile.png"
               alt="Mobile Preview"
               class="w-64 md:w-72 lg:w-80 object-contain"
             />
@@ -442,10 +530,6 @@
     </section>
 
     <section class="relative py-20 overflow-hidden">
-      <div
-        class="absolute bottom-20 left-0 w-full h-[100px] bg-gradient-to-t from-gray-300 z-10 via-white/90 to-transparent pointer-events-none"
-      ></div>
-
       <div class="relative max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-20">
         <div class="flex flex-col lg:flex-row items-stretch gap-12">
           <div
@@ -537,6 +621,10 @@
           </div>
         </div>
       </div>
+
+      <div class="absolute bottom-20 w-full h-auto">
+        <img src="assets/water.svg" alt="" class="w-full h-full object-cover" />
+      </div>
     </section>
 
     <section
@@ -545,9 +633,8 @@
       style="background-image: url(&quot;assets/bg.png&quot;)"
     >
       <div class="max-w-7xl mx-auto w-full px-6 md:px-16 lg:px-24 xl:px-32">
+        <!-- HEADING -->
         <h1
-          data-aos="fade-up"
-          data-aos-duration="800"
           class="text-3xl md:text-5xl text-center font-bold w-full mt-5 text-black leading-tight"
         >
           Dominate Your Industry
@@ -559,13 +646,12 @@
         <div
           class="flex flex-col items-center gap-6 max-w-6xl w-full mx-auto px-4 mt-10"
         >
+          <!-- ================= DESKTOP VERSION ================= -->
           <div
-            data-aos="zoom-in"
-            data-aos-duration="1000"
             class="hidden lg:flex items-center gap-2 h-[400px] w-full max-w-4xl mx-auto"
           >
             <div
-              class="image-item relative flex-grow rounded-lg overflow-hidden h-[400px] duration-500 hover:flex-[2] w-full"
+              class="image-item relative flex-grow w-56 rounded-lg overflow-hidden h-[400px] duration-500 hover:w-full"
             >
               <img
                 class="h-full w-full object-cover object-right"
@@ -574,7 +660,7 @@
             </div>
 
             <div
-              class="image-item relative flex-grow rounded-lg overflow-hidden h-[400px] duration-500 hover:flex-[2] w-full"
+              class="image-item relative flex-grow w-56 rounded-lg overflow-hidden h-[400px] duration-500 hover:w-full"
             >
               <img
                 class="h-full w-full object-cover object-right"
@@ -583,7 +669,7 @@
             </div>
 
             <div
-              class="image-item relative flex-grow rounded-lg overflow-hidden h-[400px] duration-500 hover:flex-[2] w-full"
+              class="image-item relative flex-grow w-56 rounded-lg overflow-hidden h-[400px] duration-500 hover:w-full"
             >
               <img
                 class="h-full w-full object-cover object-right"
@@ -592,7 +678,7 @@
             </div>
 
             <div
-              class="image-item relative flex-grow rounded-lg overflow-hidden h-[400px] duration-500 hover:flex-[2] w-full"
+              class="image-item relative flex-grow w-56 rounded-lg overflow-hidden h-[400px] duration-500 hover:w-full"
             >
               <img
                 class="h-full w-full object-cover object-right"
@@ -601,11 +687,8 @@
             </div>
           </div>
 
-          <div
-            data-aos="fade-up"
-            data-aos-duration="800"
-            class="lg:hidden w-full max-w-sm overflow-hidden relative"
-          >
+          <!-- ================= MOBILE VERSION ================= -->
+          <div class="lg:hidden w-full max-w-sm overflow-hidden relative">
             <div
               id="mobileSlider"
               class="flex transition-transform duration-500"
@@ -640,68 +723,150 @@
             </div>
           </div>
 
-          <div
-            data-aos="fade-in"
-            data-aos-duration="800"
-            class="flex justify-center items-center space-x-2 mt-4"
-          >
-            <span
-              class="dot w-3 h-3 bg-[#E11E38] rounded-full cursor-pointer"
-            ></span>
-            <span
-              class="dot w-3 h-3 bg-black/20 rounded-full cursor-pointer"
-            ></span>
-            <span
-              class="dot w-3 h-3 bg-black/20 rounded-full cursor-pointer"
-            ></span>
-            <span
-              class="dot w-3 h-3 bg-black/20 rounded-full cursor-pointer"
-            ></span>
+          <!-- ================= DOTS ================= -->
+          <div class="flex justify-center items-center space-x-2 mt-4">
+            <!-- Desktop Dots -->
+            <div class="hidden lg:flex space-x-2">
+              <span
+                class="desktop-dot w-3 h-3 bg-[#E11E38] rounded-full"
+              ></span>
+              <span class="desktop-dot w-3 h-3 bg-black/20 rounded-full"></span>
+              <span class="desktop-dot w-3 h-3 bg-black/20 rounded-full"></span>
+              <span class="desktop-dot w-3 h-3 bg-black/20 rounded-full"></span>
+            </div>
+
+            <!-- Mobile Dots -->
+            <div class="flex lg:hidden space-x-2">
+              <span
+                class="mobile-dot w-3 h-3 bg-[#E11E38] rounded-full cursor-pointer"
+              ></span>
+              <span
+                class="mobile-dot w-3 h-3 bg-black/20 rounded-full cursor-pointer"
+              ></span>
+              <span
+                class="mobile-dot w-3 h-3 bg-black/20 rounded-full cursor-pointer"
+              ></span>
+              <span
+                class="mobile-dot w-3 h-3 bg-black/20 rounded-full cursor-pointer"
+              ></span>
+            </div>
           </div>
 
-          <button
-            data-aos="fade-up"
-            data-aos-duration="800"
-            class="bg-[#333A7B] mb-6 text-white px-[60px] md:px-[80px] py-3 rounded-full font-bold"
-          >
-            Explore Tipsoi Devices
-          </button>
+          <!-- BUTTON -->
+          <div class="w-full flex justify-center pb-8">
+            <button
+              class="group relative overflow-hidden w-full max-w-xs sm:max-w-sm h-12 sm:h-14 bg-[#333A7B] text-white rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:shadow-lg hover:shadow-[#333A7B]/30"
+            >
+              <!-- Default Text -->
+              <span
+                class="absolute inset-0 flex items-center justify-center transition-all duration-500 ease-in-out group-hover:-translate-y-full group-hover:scale-90"
+              >
+                Explore Tipsoi Devices
+              </span>
+
+              <!-- Hover Text -->
+              <span
+                class="absolute inset-0 flex items-center justify-center translate-y-full scale-90 transition-all duration-500 ease-in-out group-hover:translate-y-0 group-hover:scale-100"
+              >
+                Explore Tipsoi Devices
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
 
     <script>
-      const images = document.querySelectorAll(".image-item");
-      const dots = document.querySelectorAll(".dot");
       const slider = document.getElementById("mobileSlider");
 
-      function setActiveDot(index) {
-        dots.forEach((dot) => {
-          dot.classList.remove("bg-[#E11E38]");
-          dot.classList.add("bg-black/20");
+      const mobileDots = document.querySelectorAll(".mobile-dot");
+      const desktopDots = document.querySelectorAll(".desktop-dot");
+      const desktopImages = document.querySelectorAll(".image-item");
+
+      const totalSlides = mobileDots.length;
+
+      let currentIndex = 0;
+      let startX = 0;
+      let endX = 0;
+
+      // -----------------------------
+      // UPDATE MOBILE SLIDER
+      // -----------------------------
+      function updateMobileSlider(index) {
+        slider.style.transform = `translateX(-${index * 100}%)`;
+
+        mobileDots.forEach((d) => {
+          d.classList.remove("bg-[#E11E38]");
+          d.classList.add("bg-black/20");
         });
 
-        dots[index].classList.remove("bg-black/20");
-        dots[index].classList.add("bg-[#E11E38]");
+        mobileDots[index].classList.remove("bg-black/20");
+        mobileDots[index].classList.add("bg-[#E11E38]");
+
+        currentIndex = index;
       }
 
-      images.forEach((img, index) => {
-        img.addEventListener("mouseenter", () => {
-          if (window.innerWidth >= 1024) {
-            setActiveDot(index);
-          }
+      // -----------------------------
+      // UPDATE DESKTOP DOT
+      // -----------------------------
+      function updateDesktopDot(index) {
+        desktopDots.forEach((d) => {
+          d.classList.remove("bg-[#E11E38]");
+          d.classList.add("bg-black/20");
+        });
+
+        desktopDots[index].classList.remove("bg-black/20");
+        desktopDots[index].classList.add("bg-[#E11E38]");
+      }
+
+      // -----------------------------
+      // MOBILE DOT CLICK
+      // -----------------------------
+      mobileDots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          updateMobileSlider(index);
         });
       });
 
-      dots.forEach((dot, index) => {
-        dot.addEventListener("click", () => {
-          if (window.innerWidth < 1024) {
-            slider.style.transform = `translateX(-${index * 100}%)`;
-            setActiveDot(index);
-          }
+      // -----------------------------
+      // TOUCH SWIPE (Mobile)
+      // -----------------------------
+      slider.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+      });
+
+      slider.addEventListener("touchmove", (e) => {
+        endX = e.touches[0].clientX;
+      });
+
+      slider.addEventListener("touchend", () => {
+        let diff = startX - endX;
+
+        if (diff > 50 && currentIndex < totalSlides - 1) {
+          updateMobileSlider(currentIndex + 1);
+        }
+
+        if (diff < -50 && currentIndex > 0) {
+          updateMobileSlider(currentIndex - 1);
+        }
+      });
+
+      // -----------------------------
+      // DESKTOP IMAGE HOVER
+      // -----------------------------
+      desktopImages.forEach((img, index) => {
+        img.addEventListener("mouseenter", () => {
+          updateDesktopDot(index);
         });
       });
     </script>
+
+    <style>
+      /* Hide Scrollbar */
+      #mobileSlider::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
 
     <section class="w-full bg-white py-16">
       <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 xl:px-20">
@@ -922,15 +1087,48 @@
 
         <!-- BUTTONS -->
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10 max-w-md mx-auto"
+          data-aos="fade-up"
+          data-aos-delay="200"
+          data-aos-duration="800"
+          class="mt-8 w-full flex justify-center"
         >
-          <button class="w-full px-6 py-3 bg-[#333A7B] text-white rounded-full">
-            See our Products
-          </button>
+          <div
+            class="w-full max-w-2xl grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"
+          >
+            <!-- BUTTON 1 -->
+            <button
+              class="group relative w-full h-12 sm:h-14 rounded-full overflow-hidden bg-[#333A7B] text-white text-sm sm:text-base font-medium transition-all duration-300 hover:shadow-lg hover:shadow-[#333A7B]/30"
+            >
+              <span
+                class="absolute inset-0 flex items-center justify-center transition-all duration-500 ease-in-out group-hover:-translate-y-full group-hover:scale-90"
+              >
+                See our Products
+              </span>
 
-          <button class="w-full px-6 py-3 bg-[#1C2A36] text-white rounded-full">
-            Talk to an expert
-          </button>
+              <span
+                class="absolute inset-0 flex items-center justify-center translate-y-full scale-90 transition-all duration-500 ease-in-out group-hover:translate-y-0 group-hover:scale-100"
+              >
+                See our Products
+              </span>
+            </button>
+
+            <!-- BUTTON 2 -->
+            <button
+              class="group relative w-full h-12 sm:h-14 rounded-full overflow-hidden bg-[#1C2A36] text-white text-sm sm:text-base font-medium transition-all duration-300 hover:shadow-lg hover:shadow-black/30"
+            >
+              <span
+                class="absolute inset-0 flex items-center justify-center transition-all duration-500 ease-in-out group-hover:-translate-y-full group-hover:scale-90"
+              >
+                Talk to an expert
+              </span>
+
+              <span
+                class="absolute inset-0 flex items-center justify-center translate-y-full scale-90 transition-all duration-500 ease-in-out group-hover:translate-y-0 group-hover:scale-100"
+              >
+                Talk to an expert
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -968,11 +1166,11 @@
         <!-- RIGHT SIDE -->
         <div class="relative overflow-hidden">
           <!-- SLIDER WRAPPER -->
-          <div id="slider" class="flex transition-transform duration-500">
+          <div id="slider1" class="flex transition-transform duration-500">
             <!-- SLIDE 1 -->
             <div class="min-w-full space-y-4">
               <!-- FAQ -->
-              <div class="border-b pb-4">
+              <div class="border-b-2 border-black pb-4">
                 <div
                   onclick="toggleAnswer(this)"
                   class="flex justify-between cursor-pointer"
@@ -981,7 +1179,7 @@
                   <i class="fa-solid fa-angle-down"></i>
                 </div>
                 <p
-                  class="mt-2 hidden text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
                 >
                   Tipsoi is an innovative technology company founded by Inovace
                   Technologies Ltd., specializing in advanced biometric devices
@@ -992,7 +1190,7 @@
                 </p>
               </div>
 
-              <div class="border-b pb-4">
+              <div class="border-b-2 border-black pb-4">
                 <div
                   onclick="toggleAnswer(this)"
                   class="flex justify-between cursor-pointer"
@@ -1001,13 +1199,13 @@
                   <i class="fa-solid fa-angle-down"></i>
                 </div>
                 <p
-                  class="mt-2 hidden text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
                 >
                   It offers attendance tracking and access control.
                 </p>
               </div>
 
-              <div class="border-b pb-4">
+              <div class="border-b-2 border-black pb-4">
                 <div
                   onclick="toggleAnswer(this)"
                   class="flex justify-between cursor-pointer"
@@ -1018,13 +1216,13 @@
                   <i class="fa-solid fa-angle-down"></i>
                 </div>
                 <p
-                  class="mt-2 hidden text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
                 >
                   Corporate, factories, hospitals, and more.
                 </p>
               </div>
 
-              <div class="border-b pb-4">
+              <div class="border-b-2 border-black pb-4">
                 <div
                   onclick="toggleAnswer(this)"
                   class="flex justify-between cursor-pointer"
@@ -1035,7 +1233,7 @@
                   <i class="fa-solid fa-angle-down"></i>
                 </div>
                 <p
-                  class="mt-2 hidden text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
                 >
                   WiFi, LAN, Cloud sync supported.
                 </p>
@@ -1053,7 +1251,7 @@
                   <i class="fa-solid fa-angle-down"></i>
                 </div>
                 <p
-                  class="mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
                 >
                   Flexible subscription plans available.
                 </p>
@@ -1068,7 +1266,7 @@
                   <i class="fa-solid fa-angle-down"></i>
                 </div>
                 <p
-                  class="mt-2 hidden text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
                 >
                   Yes, enterprise-grade encryption used.
                 </p>
@@ -1083,7 +1281,7 @@
                   <i class="fa-solid fa-angle-down"></i>
                 </div>
                 <p
-                  class="mt-2 hidden text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
                 >
                   24/7 customer support provided.
                 </p>
@@ -1098,7 +1296,7 @@
                   <i class="fa-solid fa-angle-down"></i>
                 </div>
                 <p
-                  class="mt-2 hidden text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+                  class="faq-answer mt-2 text-gray-600 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
                 >
                   Yes, demo and free trial available.
                 </p>
@@ -1111,7 +1309,7 @@
 
     <script>
       let currentSlide = 0;
-      const faqSlider = document.getElementById("slider");
+      const faqSlider = document.getElementById("slider1");
       const totalSlides = faqSlider.children.length;
 
       function nextSlide() {
@@ -1126,11 +1324,14 @@
 
       function toggleAnswer(element) {
         const answer = element.nextElementSibling;
-        answer.classList.toggle("hidden");
-        if (!answer.classList.contains("hidden")) {
-          answer.style.maxHeight = answer.scrollHeight + "px";
-        } else {
+        const icon = element.querySelector("i");
+
+        if (answer.style.maxHeight && answer.style.maxHeight !== "0px") {
           answer.style.maxHeight = "0";
+          icon.classList.remove("rotate-180");
+        } else {
+          answer.style.maxHeight = answer.scrollHeight + "px";
+          icon.classList.add("rotate-180");
         }
       }
     </script>
@@ -1144,10 +1345,10 @@
             class="w-full md:w-[45%] lg:w-[35%] flex flex-col items-center md:items-start text-center md:text-left"
           >
             <a href="/">
-              <img src="assets/logo.png" alt="" class="max-w-[180px]" />
+              <img src="assets/footerlogo.svg" alt="" class="max-w-[180px]" />
             </a>
 
-            <p class="text-sm text-white mt-6 leading-relaxed">
+            <p class="text-sm lg:text-xl text-white mt-6 leading-relaxed">
               Smart attendance, simplified. Biometric tracking, automated
               payroll, and seamless integrations that scale with your business.
             </p>
@@ -1157,8 +1358,8 @@
           <div
             class="w-full md:w-[45%] lg:w-[15%] flex flex-col items-center md:items-start text-center md:text-left"
           >
-            <h3 class="text-lg text-white font-medium">Pages</h3>
-            <div class="flex flex-col gap-2 mt-6">
+            <h3 class="text-lg lg:text-2xl text-white font-medium">Pages</h3>
+            <div class="flex flex-col gap-2 mt-2">
               <a href="#" class="text-sm text-white/80 hover:text-white"
                 >About</a
               >
@@ -1184,8 +1385,8 @@
           <div
             class="w-full md:w-[45%] lg:w-[15%] flex flex-col items-center md:items-start text-center md:text-left"
           >
-            <h3 class="text-lg text-white font-medium">Mail</h3>
-            <div class="flex flex-col gap-2 mt-6 text-sm text-white/80">
+            <h3 class="text-lg lg:text-2xl text-white font-medium">Mail</h3>
+            <div class="flex flex-col gap-2 mt-2 text-sm text-white/80">
               <p>contact@tipsoi.ai</p>
 
               <div class="mt-3">
@@ -1204,9 +1405,9 @@
           <div
             class="w-full md:w-[45%] lg:w-[25%] flex flex-col items-center md:items-start text-center md:text-left"
           >
-            <h3 class="text-lg text-white font-medium">Office</h3>
+            <h3 class="text-lg lg:text-2xl text-white font-medium">Office</h3>
 
-            <p class="text-sm text-white/80 mt-4">
+            <p class="text-sm text-white/80 mt-2">
               10 Bukit Batok Crescent, #10-05b, The Spire, Singapore 658079
             </p>
 
